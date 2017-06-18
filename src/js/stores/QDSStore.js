@@ -9,6 +9,8 @@ class QDSStore {
 
     let updateQDS = this.updateQDS.bind(this)
     let addQDSMessages = this.addQDSMessages.bind(this)
+    let separateSmileys = this.separateSmileys.bind(this)
+
     this.api = api
     this.api.on("QDS_DATA_UPDATED", updateQDS)
     this.api.getAllQDSData().then(ds => {
@@ -23,32 +25,35 @@ class QDSStore {
     }
 
   }
+  separateSmileys (data, list){
+      var lengthList = list.length;
+      if(!(lengthList < 20)){
+        list.shift();
+      }
+      if(data.power == 0 || data.power > 270){
+           data.power = 249;
+      }
+      list.push(new SmileData(data.jobID, data.power));
+    }
 
   updateQDS(data){
-    if(this.qdsData.length <= 10){
+    if(this.qdsData.length <= 100){
       this.qdsData.unshift(data);
-    }else{
+    }
+    else
+    {
       this.qdsData.pop()
       this.qdsData.unshift(data);
     }
 
     if(data.smiley == 0){
-        this.smiley0.push(data);
+        separateSmileys(data,this.smiley0);
     }else{
-        this.smiley1.push(data);
+        separateSmileys(data,this.smiley1);
     }
   }
 
-/*separateSmileys (data, list){
-    var lengthList = list.length;
-    if(!(lengthList < 20)){
-      list.shift();
-    }
-    if(data.power == 0 || data.power > 270){
-         data.power = 249;
-    }
-    list.push(new SmileData(data.jobID, data.power));
-  }*/
+
 
 
 }
