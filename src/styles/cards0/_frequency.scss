@@ -1,0 +1,48 @@
+//MELDUNGSHÄUFIGKEIT
+
+.frequency {
+    .card-block-subheader {
+        height: 94px;
+
+        #frequency-date-selection {
+            font-size: 11px;
+            padding: 0;
+        }
+
+        .c-inputs-stacked {
+            padding-left: 10px;
+        }
+    }
+
+    .card-block-content {
+        max-height: 248px;
+
+        table td {
+            border-width: 0;
+
+            .shrink {
+                white-space: nowrap;
+                margin-right: 0.8rem;
+            }
+
+            .expand {
+                width: 99%;
+            }
+        }
+
+        .frequency-bar-container {
+            display: flex;
+            height: 20px;
+            line-height: 20px;
+            margin: 1px 0;
+            width: 100%;
+        }
+
+        .frequency-bar {
+            background-color: $progress-color-blue;
+            color: $foreground-color;
+            text-align: right;
+            padding-right: 4px;
+        }
+    }
+}

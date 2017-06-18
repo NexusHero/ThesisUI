@@ -1,0 +1,73 @@
+//BETRIEBSSTUNDEN
+
+.operating-hours {
+    .card-block-content {
+        height: 100%;
+        max-height: 342px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+        .nav {
+            &:before {
+                content: "";
+                display: block;
+            }
+            height: 40px;
+            padding-top: 4px;
+            border-bottom-width: 0;
+            background-color: $darkGrey;
+            position: relative;
+            -webkit-box-shadow: 0 3px 5px 0 rgba($shadow-color, 0.75);
+            -moz-box-shadow: 0 3px 5px 0 rgba($shadow-color, 0.75);
+            box-shadow: 0 3px 5px 0 rgba($shadow-color, 0.75);
+
+            li.active a {
+                font-weight: bold !important;
+            }
+
+            li a {
+                color: $progress-color-blue !important;
+                background-color: $darkGrey;
+                border-width: 0;
+            }
+
+            li.disabled a {
+                color: $brightGrey !important;
+            }
+        }
+    }
+
+    .card-tab-content {
+        height: 100%;
+        max-height: 302px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        color: $text-color;
+        padding: 6px 12px;
+
+        .card-text-progress {
+            margin-top: 10px;
+            color: $text-color;
+        }
+
+        .progress-bar-info {
+            background-color: $progress-color-blue;
+        }
+
+        .progress-bar-success {
+            background-color: $status-okay-color;
+        }
+
+        .progress-bar-warning {
+            background-color: $status-warning-color;
+        }
+
+        .progress-bar-danger {
+            background-color: $status-error-color;
+        }
+
+        .progress {
+          background-color: darken($table-row-odd-color, 15);
+        }
+    }
+}

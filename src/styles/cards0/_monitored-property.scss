@@ -1,0 +1,40 @@
+//ZUSTANDSÜBERSICHT
+
+.state-monitor {
+    .progress {
+        position: relative;
+        background-color: darken($table-row-odd-color, 15);
+
+        .criticalLimit {
+            height: 100%;
+            position: absolute;
+            border-left: 2px dotted $status-error-color;
+        }
+
+        .warningLimit {
+            height: 100%;
+            position: absolute;
+            border-left: 2px dotted $status-warning-color;
+        }
+
+        .progress-bar-success {
+            background-color: $status-okay-color;
+        }
+
+        .progress-bar-warning {
+            background-color: $status-warning-color;
+        }
+
+        .progress-bar-danger {
+            background-color: $status-error-color;
+        }
+    }
+
+    .disabled.panel-title {
+        color: $disabled-panel-color;
+
+        a:hover {
+            color: $disabled-panel-color !important;
+        }
+    }
+}

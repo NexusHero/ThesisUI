@@ -1,0 +1,52 @@
+//PROGRAMMÄNDERUNG
+
+.program-editing {
+    .card-block-content {
+        background-color: $card-block4-background;
+        height: 100%;
+        max-height: 342px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+
+        table th.card-text {
+            width: 115px;
+        }
+
+        .nav {
+            &:before {
+                content: "";
+                display: block;
+            }
+            height: 40px;
+            padding-top: 4px;
+            border-bottom-width: 0;
+            background-color: $darkGrey;
+            position: relative;
+            -webkit-box-shadow: 0 3px 5px 0 rgba($shadow-color, 0.75);
+            -moz-box-shadow: 0 3px 5px 0 rgba($shadow-color, 0.75);
+            box-shadow: 0 3px 5px 0 rgba($shadow-color, 0.75);
+
+            li.active a {
+                font-weight: bold !important;
+            }
+
+            li a {
+                color: $progress-color-blue !important;
+                background-color: $darkGrey;
+                border-width: 0;
+            }
+
+            li.disabled a {
+                color: $brightGrey !important;
+            }
+        }
+    }
+
+    .card-tab-content {
+        background-color: $card-block4-background;
+        height: 100%;
+        max-height: 302px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
