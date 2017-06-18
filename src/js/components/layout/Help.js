@@ -22,7 +22,7 @@ export default class Help extends React.Component {
   render() {
     return (
       <div>
-        <Button color="primary" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation" onClick={this.toggle}>{this.props.buttonLabel}>
+        <Button color="#295173" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation" onClick={this.toggle}>{this.props.buttonLabel}>
         <span class="navbar-toggler-icon"></span>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>

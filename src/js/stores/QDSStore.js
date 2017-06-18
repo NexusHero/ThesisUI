@@ -3,8 +3,6 @@ import { observable } from "mobx"
 class QDSStore {
 
   @observable qdsData = []
-  @observable smiley0 = []
-  @observable smiley1 = []
   setApi(api) {
 
     let updateQDS = this.updateQDS.bind(this)
@@ -24,16 +22,6 @@ class QDSStore {
     }
 
   }
-  separateSmileys (data, list){
-      var lengthList = list.length;
-      if(!(lengthList < 20)){
-        list.shift();
-      }
-      if(data.power == 0 || data.power > 270){
-           data.power = 249;
-      }
-      list.push(new SmileData(data.jobID, data.power));
-    }
 
   updateQDS(data){
 
@@ -41,7 +29,7 @@ class QDSStore {
       data.power = 250;
     }
 
-    if(this.qdsData.length < 100){
+    if(this.qdsData.length < 50){
       this.qdsData.unshift(data);
     }
     else{
@@ -49,22 +37,6 @@ class QDSStore {
       this.qdsData.unshift(data);
     }
 
-    if(this.smiley0 == 0){
-        if(this.smiley0.length < 20) {
-          this.smiley0.push(data);
-        }else{
-          this.smiley0.shift();
-          this.smiley0.push();
-        }
-    }
-    if(this.smiley1 == 1){
-        if(this.smiley1.length < 20) {
-          this.smiley1.push(data);
-        }else{
-          this.smiley1.shift();
-          this.smiley1.push();
-      }
-    }
   }
 }
 let Store = new QDSStore

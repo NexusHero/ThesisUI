@@ -24,7 +24,7 @@ export default class CodePosition extends React.Component {
            <XAxis dataKey={'x'} name='XAxis' unit='mm'/>
            <YAxis dataKey={'y'} name='YAxis' unit='mm'/>
            <Legend/>
-           <Scatter name='QR-Code position [mm]' data={qds} fill='#295173'/>
+           <Scatter name='Center of QR-Code position (mm|mm)' data={qds} fill='#295173'/>
            <CartesianGrid />
            <Tooltip cursor={{strokeDasharray: '3 3'}}/>
          </ScatterChart>

@@ -21,9 +21,10 @@ getMin(list){
 }
 
 getLastItems(list){
+
   var size = list.length
-  if(5 < size){
-     var tmp = list.slice(-20);
+  if(19 < size){
+     var tmp = list.slice(Math.max(size - 19));
      return tmp;
   }else{
     return list;
@@ -47,14 +48,14 @@ getLastItems(list){
 
       <Card class="myCard">
             <CardBlock>
-            <CardTitle> Quality Data from TruDiode 4001 </CardTitle>
+            <CardTitle> TruDiode 4001.5 </CardTitle>
             <ResponsiveContainer width='100%' aspect={4.0/3.0}>
 
             <ScatterChart>
-             <XAxis dataKey={'jobID'} name='XAxis' unit=' JobID' domain={[minValueX, maxValueX]}/>
+             <XAxis dataKey={'jobID'} name='XAxis' unit=' JobID' domain={[minValueX, maxValueX]} interval={0}/>
              <YAxis dataKey={'power'} name='YAxis' unit=' Watt' domain={[minValueY, maxValueY]}/>
              <Legend/>
-             <Scatter name='Power' data={qds} fill='#295173'/>
+             <Scatter name='JobID in XAxis, Power in YAxis [W]' data={qds} fill='#295173'/>
              <ReferenceLine y={qualityMin} label="MIN" stroke="#fe8336"/>
              <ReferenceLine y={qualityMax} label="Max" stroke="#fe8336"/>
              <CartesianGrid />
