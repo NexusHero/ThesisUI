@@ -10,7 +10,7 @@ import {fullWhite, darkWhite, lightWhite, blueGrey50, blueGrey100, grey50, blue9
 import { observer, inject } from "mobx-react"
 
 import CodePosition from '../pages/CodePosition'
-import LaserLine from '../pages/LaserLine'
+import LaserLine from '../pages/LaserLine2'
 
 
 const lstJobList = [
@@ -48,8 +48,7 @@ export default class DataBaseUI extends React.Component {
         qds: this.props.qdsstore.qdsData,
         data: lstJobList,
 
-
-       };
+    };
   }
 
 
@@ -67,7 +66,12 @@ export default class DataBaseUI extends React.Component {
 
   handleRowSelection(selectedRows) {
     console.log('selectedRows: ' + selectedRows );
-
+    this.setState(
+      {
+         normal: this.state.qds[selectedRows].camera,
+         overlay: this.state.qds[selectedRows].overlay
+       }
+     );
   }
 
 
@@ -86,7 +90,7 @@ export default class DataBaseUI extends React.Component {
         tooltip: 'Things...'
       },
       {
-        key: 'date',
+        key: 'timestamp',
         label: 'Date',
       },
     ];
@@ -115,7 +119,7 @@ export default class DataBaseUI extends React.Component {
                                 height={"800"}
                                  showCheckboxes={true}
                                 data={this.state.qds}
-                                showCheckboxes={true} 
+                                showCheckboxes={true}
                                 onCellClick={this.handleCellClick}
                                 onCellDoubleClick={this.handleCellDoubleClick}
                                 onFilterValueChange={this.handleFilterValueChange}
@@ -130,14 +134,14 @@ export default class DataBaseUI extends React.Component {
                       <CodePosition data={this.state.qds}/>
 
                       <CardDeck>
-                        <Image image={this.state.qds} title={"Before Image processing"}/>
-                        <Image image={this.state.qds} title={"After Image processing"}/>
+                        <Image image={this.state.normal} title={"Before Image processing"}/>
+                        <Image image={this.state.overlay} title={"After Image processing"}/>
                       </CardDeck>
               </div>
 
               <div class="col-lg-4" >
-                      <LaserLine data={this.state.qds} maxValue={0.93} minValue={0.85} qualityMin={0.86} qualityMax={0.905} smiley={1}/>
-                      <LaserLine data={this.state.qds} maxValue={0.93} minValue={0.85} qualityMin={0.86} qualityMax={0.905} smiley={0}/>
+                      <LaserLine data={this.state.qds} maxValue={255} minValue={244} qualityMin={246} qualityMax={253} smiley={1}/>
+                      <LaserLine data={this.state.qds} maxValue={255} minValue={244} qualityMin={246} qualityMax={253} smiley={0}/>
               </div>
         </div>
       </div>

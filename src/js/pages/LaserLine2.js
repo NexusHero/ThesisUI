@@ -12,6 +12,8 @@ export default class LaserLine2 extends React.Component {
     const qds = this.props.data;
     const qualityMin = this.props.qualityMin;
     const qualityMax = this.props.qualityMax;
+    const minValue = this.props.minValue;
+    const maxValue = this.props.maxValue;
     const label = {
       orientation: 'outer'
     };
@@ -35,8 +37,8 @@ export default class LaserLine2 extends React.Component {
            </ComposedChart>
 */}
             <ScatterChart>
-             <XAxis dataKey={'jobID'} name='XAxis' unit='JobID'/>
-             <YAxis dataKey={'power'} name='YAxis' unit='W'/>
+             <XAxis dataKey={'jobID'} name='XAxis' unit=' JobID'/>
+             <YAxis dataKey={'power'} name='YAxis' unit=' Watt' domain={[minValue, maxValue]}/>
              <Legend/>
              <Scatter name='Power' data={qds} fill='#295173'/>
              <ReferenceLine y={qualityMin} label="MIN" stroke="#fe8336"/>
