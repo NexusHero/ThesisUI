@@ -6,14 +6,39 @@ import {ScatterChart,Scatter,AreaChart,ComposedChart,Bar, defs, Area, LineChart,
 export default class LaserLine2 extends React.Component {
   constructor(props){
     super(props);
+
+
   }
 
+getMax(list){
+  var res = Math.max.apply(Math,list.map(function(o){return o.jobID;}))
+  return res
+}
+
+getMin(list){
+  var res = Math.min.apply(Math,list.map(function(o){return o.jobID;}))
+  return res
+}
+
+getLastItems(list){
+  var size = list.length
+  if(5 < size){
+     var tmp = list.slice(-20);
+     return tmp;
+  }else{
+    return list;
+  }
+
+}
   render(){
-    const qds = this.props.data;
+    const qds = this.getLastItems(this.props.data);
     const qualityMin = this.props.qualityMin;
     const qualityMax = this.props.qualityMax;
-    const minValue = this.props.minValue;
-    const maxValue = this.props.maxValue;
+    const minValueY = this.props.minValue;
+    const maxValueY = this.props.maxValue;
+    const minValueX = this.getMin(qds);
+    const maxValueX = this.getMax(qds);
+
     const label = {
       orientation: 'outer'
     };
@@ -24,21 +49,10 @@ export default class LaserLine2 extends React.Component {
             <CardBlock>
             <CardTitle> Quality Data from TruDiode 4001 </CardTitle>
             <ResponsiveContainer width='100%' aspect={4.0/3.0}>
-{/*
-            <ComposedChart  data={this.state.qds}
-                margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-              <XAxis dataKey="jobID"/>
-              <YAxis />
-              <Tooltip/>
-              <Legend/>
-              <CartesianGrid stroke='#f5f5f5'/>
-              <Bar dataKey='power' barSize={10} fill='#413ea0'/>
-              <Line type='monotone' dataKey='power' stroke='#ff7300'/>
-           </ComposedChart>
-*/}
+
             <ScatterChart>
-             <XAxis dataKey={'jobID'} name='XAxis' unit=' JobID'/>
-             <YAxis dataKey={'power'} name='YAxis' unit=' Watt' domain={[minValue, maxValue]}/>
+             <XAxis dataKey={'jobID'} name='XAxis' unit=' JobID' domain={[minValueX, maxValueX]}/>
+             <YAxis dataKey={'power'} name='YAxis' unit=' Watt' domain={[minValueY, maxValueY]}/>
              <Legend/>
              <Scatter name='Power' data={qds} fill='#295173'/>
              <ReferenceLine y={qualityMin} label="MIN" stroke="#fe8336"/>

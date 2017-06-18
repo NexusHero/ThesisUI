@@ -12,12 +12,12 @@ class DefaultStore extends EventEmitter {
    let emit = this.emit.bind(this);
    this.commgate = commgate;
    this.commgate.on("QDS_DATA_UPDATED", data => emit("QDS_DATA_UPDATED", data));
-
  }
 
   getAllQDSData(){
     return this.commgate.getAllQDSData(); //it's a promise
   }
+
 }
 let Store = new DefaultStore
 export default Store

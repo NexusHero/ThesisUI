@@ -9,7 +9,6 @@ class QDSStore {
 
     let updateQDS = this.updateQDS.bind(this)
     let addQDSMessages = this.addQDSMessages.bind(this)
-    let separateSmileys = this.separateSmileys.bind(this)
 
     this.api = api
     this.api.on("QDS_DATA_UPDATED", updateQDS)
@@ -37,25 +36,36 @@ class QDSStore {
     }
 
   updateQDS(data){
-    if(this.qdsData.length <= 100){
+
+    if(data.power == 0 || data.power > 260){
+      data.power = 250;
+    }
+
+    if(this.qdsData.length < 100){
       this.qdsData.unshift(data);
     }
-    else
-    {
-      this.qdsData.pop()
+    else{
+      this.qdsData.pop();
       this.qdsData.unshift(data);
     }
 
-    if(data.smiley == 0){
-        separateSmileys(data,this.smiley0);
-    }else{
-        separateSmileys(data,this.smiley1);
+    if(this.smiley0 == 0){
+        if(this.smiley0.length < 20) {
+          this.smiley0.push(data);
+        }else{
+          this.smiley0.shift();
+          this.smiley0.push();
+        }
+    }
+    if(this.smiley1 == 1){
+        if(this.smiley1.length < 20) {
+          this.smiley1.push(data);
+        }else{
+          this.smiley1.shift();
+          this.smiley1.push();
+      }
     }
   }
-
-
-
-
 }
 let Store = new QDSStore
 export default Store
