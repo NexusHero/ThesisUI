@@ -8,7 +8,7 @@ export default class TrumpfHeader extends React.Component {
 
     return (
       <div>
-        <Jumbotron fluid>
+        <Jumbotron fluid  styles={{backgroundColor: '#295173'}}>
           <Container fluid>
             <h1 className="display-3">Quality Data Storage</h1>
             <p className="lead">The Power of Choice</p>

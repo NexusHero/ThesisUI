@@ -56,11 +56,13 @@ getLastItems(list){
       <Card class="myCard">
             <CardBlock>
             <CardTitle>
-            <div>
-              TruDiode 4001.5
-              <img src="../../assets/card_01.svg" width="40" height="40" class="d-inline-block align-mid" alt="" />
-              </div>
-              </CardTitle>
+              <table >
+                <tr>
+                  <th>TruDiode 4001.5</th>
+                  <th> <img src="../../assets/card_01.svg" width="40" height="40" class="d-inline-block align-mid" alt="" /></th>
+                </tr>
+               </table>
+           </CardTitle>
             <ResponsiveContainer width='100%' aspect={4.0/3.0}>
 
             <ScatterChart>
