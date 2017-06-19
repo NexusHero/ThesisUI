@@ -9,7 +9,8 @@ import {fullWhite, darkWhite, lightWhite, blueGrey50, blueGrey100, grey50, blue9
 
 import { observer, inject } from "mobx-react"
 import CodePosition from '../pages/CodePosition'
-import LaserLine from '../pages/LaserLine2'
+import LaserLineSmiley0 from '../pages/LaserLineSmiley0'
+import LaserLineSmiley1 from '../pages/LaserLineSmiley1'
 
 
 @inject('qdsstore')
@@ -106,7 +107,8 @@ export default class DataBaseUI extends React.Component {
               </div>
 
               <div class="col-lg-4" >
-                      <LaserLine data={this.state.qds} maxValue={255} minValue={244} qualityMin={246} qualityMax={253} smiley={1}/>
+              <LaserLineSmiley0 data={this.state.qds} maxValue={255} minValue={244} qualityMin={246} qualityMax={253} smiley={0}/>
+              <LaserLineSmiley1 data={this.state.qds} maxValue={255} minValue={244} qualityMin={246} qualityMax={253} smiley={1}/>
               </div>
         </div>
       </div>

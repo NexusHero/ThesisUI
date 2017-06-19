@@ -3,7 +3,7 @@ import { Card, CardImg,CardHeader, CardText, CardBlock, CardTitle, CardSubtitle,
 import {ScatterChart,Scatter,AreaChart,ComposedChart,Bar, defs, Area, LineChart, Line, XAxis, YAxis, ReferenceLine, CartesianGrid, Tooltip, Legend, Label, LabelList, ResponsiveContainer } from 'recharts';
 
 
-export default class LaserLine2 extends React.Component {
+export default class LaserLineSmiley1 extends React.Component {
   constructor(props){
     super(props);
 
@@ -29,10 +29,21 @@ getLastItems(list){
   }else{
     return list;
   }
-
 }
+getSmiley1List(list){
+  var lstSmiley = [];
+  for(var i=0; i<list.length; i++){
+    if(list[i].smiley == 1){
+      lstSmiley.push(list[i]);
+    }
+  }
+  debugger;
+  return lstSmiley;
+}
+
   render(){
-    const qds = this.getLastItems(this.props.data);
+    debugger;
+    const qds = this.getLastItems(this.getSmiley1List(this.props.data));
     const qualityMin = this.props.qualityMin;
     const qualityMax = this.props.qualityMax;
     const minValueY = this.props.minValue;
@@ -48,7 +59,7 @@ getLastItems(list){
 
       <Card class="myCard">
             <CardBlock>
-            <CardTitle> TruDiode 4001.5 </CardTitle>
+            <CardTitle> TruDiode 4001.5 - Smiley2</CardTitle>
             <ResponsiveContainer width='100%' aspect={4.0/3.0}>
 
             <ScatterChart>
