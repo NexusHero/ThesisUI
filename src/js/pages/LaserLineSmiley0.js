@@ -59,7 +59,7 @@ getLastItems(list){
               <table >
                 <tr>
                   <th>TruDiode 4001.5</th>
-                  <th> <img src="../../assets/card_01.svg" width="40" height="40" class="d-inline-block align-mid" alt="" /></th>
+                  <th> <img src="../../assets/card_01.svg" width="75" height="75" class="d-inline-block align-mid" alt="" /></th>
                 </tr>
                </table>
            </CardTitle>
