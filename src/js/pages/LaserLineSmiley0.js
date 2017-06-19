@@ -2,12 +2,9 @@ import React from "react"
 import { Card, CardImg,CardHeader, CardText, CardBlock, CardTitle, CardSubtitle,  Button } from 'reactstrap';
 import {ScatterChart,Scatter,AreaChart,ComposedChart,Bar, defs, Area, LineChart, Line, XAxis, YAxis, ReferenceLine, CartesianGrid, Tooltip, Legend, Label, LabelList, ResponsiveContainer } from 'recharts';
 
-
 export default class LaserLineSmiley0 extends React.Component {
   constructor(props){
     super(props);
-
-
   }
 
 getMax(list){
@@ -21,7 +18,6 @@ getMin(list){
 }
 
 getLastItems(list){
-
   var size = list.length
   if(19 < size){
      var tmp = list.slice(Math.max(size - 19));
@@ -42,6 +38,7 @@ getLastItems(list){
   }
 
   render(){
+    debugger;
     const qds = this.getLastItems(this.getSmiley0List(this.props.data));
     const qualityMin = this.props.qualityMin;
     const qualityMax = this.props.qualityMax;
@@ -58,7 +55,12 @@ getLastItems(list){
 
       <Card class="myCard">
             <CardBlock>
-            <CardTitle> TruDiode 4001.5 - Smiley1</CardTitle>
+            <CardTitle>
+            <div>
+              TruDiode 4001.5
+              <img src="../../assets/card_01.svg" width="40" height="40" class="d-inline-block align-mid" alt="" />
+              </div>
+              </CardTitle>
             <ResponsiveContainer width='100%' aspect={4.0/3.0}>
 
             <ScatterChart>

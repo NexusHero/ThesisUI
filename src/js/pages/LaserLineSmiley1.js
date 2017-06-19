@@ -59,7 +59,12 @@ getSmiley1List(list){
 
       <Card class="myCard">
             <CardBlock>
-            <CardTitle> TruDiode 4001.5 - Smiley2</CardTitle>
+            <CardTitle>
+            <div>
+              TruDiode 4001.5
+              <img src="../../assets/card_02.svg" width="75" height="75" class="d-inline-block align-mid" alt="" />
+            </div>
+            </CardTitle>
             <ResponsiveContainer width='100%' aspect={4.0/3.0}>
 
             <ScatterChart>
