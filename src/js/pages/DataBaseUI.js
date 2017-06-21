@@ -13,6 +13,7 @@ import LaserLineSmiley0 from '../pages/LaserLineSmiley0'
 import LaserLineSmiley1 from '../pages/LaserLineSmiley1'
 
 
+
 @inject('qdsstore')
 @observer
 export default class DataBaseUI extends React.Component {
@@ -21,6 +22,8 @@ export default class DataBaseUI extends React.Component {
 
     this.state = {
         qds: this.props.qdsstore.qdsData,
+        normal: this.props.qdsstore.camera,
+        overlay: this.props.qdsstore.overlay
     };
   }
 
@@ -73,6 +76,7 @@ export default class DataBaseUI extends React.Component {
     <div style={styles}>
     <div class="row">
          <div class="col-lg-4" >
+
             <Card class="myCard">
               <CardBlock>
                 <CardTitle>Select your ID </CardTitle>
@@ -99,7 +103,6 @@ export default class DataBaseUI extends React.Component {
 
               <div class="col-lg-4">
                       <CodePosition data={this.state.qds}/>
-
                       <CardDeck>
                         <Image image={this.state.normal} title={"Before Image processing"}/>
                         <Image image={this.state.overlay} title={"After Image processing"}/>
@@ -107,8 +110,8 @@ export default class DataBaseUI extends React.Component {
               </div>
 
               <div class="col-lg-4" >
-              <LaserLineSmiley0 data={this.state.qds} maxValue={255} minValue={244} qualityMin={246} qualityMax={253} smiley={0}/>
-              <LaserLineSmiley1 data={this.state.qds} maxValue={255} minValue={244} qualityMin={246} qualityMax={253} smiley={1}/>
+              <LaserLineSmiley0 data={this.state.qds} maxValue={38.7431} minValue={38.4611} qualityMin={38.4996} qualityMax={38.7000} smiley={0}/>
+              <LaserLineSmiley1 data={this.state.qds} maxValue={66.3527} minValue={65.6833} qualityMin={65.8812} qualityMax={66.2864} smiley={1}/>
               </div>
         </div>
       </div>

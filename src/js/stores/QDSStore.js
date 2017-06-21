@@ -3,8 +3,10 @@ import { observable } from "mobx"
 class QDSStore {
 
   @observable qdsData = []
+  @observable camera = null
+  @observable overlay = null
   setApi(api) {
-
+    debugger;
     let updateQDS = this.updateQDS.bind(this)
     let addQDSMessages = this.addQDSMessages.bind(this)
 
@@ -25,10 +27,6 @@ class QDSStore {
 
   updateQDS(data){
 
-    if(data.power == 0 || data.power > 260){
-      data.power = 250;
-    }
-
     if(this.qdsData.length < 50){
       this.qdsData.unshift(data);
     }
@@ -36,7 +34,8 @@ class QDSStore {
       this.qdsData.pop();
       this.qdsData.unshift(data);
     }
-
+    this.camera = data.camera;
+    this.overlay = data.overlay;
   }
 }
 let Store = new QDSStore

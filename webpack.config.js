@@ -1,4 +1,5 @@
-var debug = process.env.NODE_ENV !== "production"
+var debug = process.argv.indexOf('-p') == -1
+console.warn(debug)
 var webpack = require('webpack')
 var path = require('path')
 
@@ -7,10 +8,7 @@ var path = require('path')
 module.exports = {
   context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
-  entry: [
-      "babel-polyfill",
-      "./js/client.js"
-  ],
+  entry: "./js/client.js",
   module: {
     loaders: [
       {
@@ -57,17 +55,26 @@ module.exports = {
     filename: "client.min.js"
   },
   plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-          'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: true
-    }
-  })
+new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            mangle: true,
+            compress: {
+                booleans: true,
+                cascade: true,
+                conditionals: true,
+                dead_code: true,
+                drop_console: true,
+                evaluate: true,
+                if_return: true,
+                join_vars: true,
+                sequences: true,
+                screw_ie8: true,
+                unused: true
+            },
+            output: {
+              comments: false
+            }
+        })
   ]
 }

@@ -8,8 +8,18 @@ export default class CodePosition extends React.Component {
     super(props);
   }
 
+  getLastItems(list){
+    var size = list.length
+    if(19 < size){
+       var tmp = list.slice(Math.max(size - 19));
+       return tmp;
+    }else{
+      return list;
+    }
+  }
+
   render(){
-    const qds  = this.props.data;
+    const qds  = this.getLastItems(this.props.data);
     const label = {
       orientation: 'outer'
     };
@@ -24,7 +34,7 @@ export default class CodePosition extends React.Component {
            <XAxis dataKey={'x'} name='XAxis' unit='mm'/>
            <YAxis dataKey={'y'} name='YAxis' unit='mm'/>
            <Legend/>
-           <Scatter name='Center of QR-Code position (mm|mm)' data={qds} fill='#295173'/>
+           <Scatter name='Center of QR-Code in (mm |mm)' data={qds} fill='#295173'/>
            <CartesianGrid />
            <Tooltip cursor={{strokeDasharray: '3 3'}}/>
          </ScatterChart>

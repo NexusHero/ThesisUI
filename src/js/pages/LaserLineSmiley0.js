@@ -33,12 +33,11 @@ getLastItems(list){
         lstSmiley.push(list[i]);
       }
     }
-    debugger;
     return lstSmiley;
   }
 
+
   render(){
-    debugger;
     const qds = this.getLastItems(this.getSmiley0List(this.props.data));
     const qualityMin = this.props.qualityMin;
     const qualityMax = this.props.qualityMax;
@@ -56,25 +55,21 @@ getLastItems(list){
       <Card class="myCard">
             <CardBlock>
             <CardTitle>
-              <table >
-                <tr>
-                  <th>TruDiode 4001.5</th>
-                  <th> <img src="../../assets/card_01.svg" width="75" height="75" class="d-inline-block align-mid" alt="" /></th>
-                </tr>
-               </table>
+              <div>
+                  TruDiode 4001.5
+                  <img src="../../assets/card_01.svg" width="75" height="75" alt="" />
+              </div>
            </CardTitle>
             <ResponsiveContainer width='100%' aspect={4.0/3.0}>
-
-            <ScatterChart>
-             <XAxis dataKey={'jobID'} name='XAxis' unit=' JobID' domain={[minValueX, maxValueX]} interval={0}/>
-             <YAxis dataKey={'power'} name='YAxis' unit=' Watt' domain={[minValueY, maxValueY]}/>
-             <Legend/>
-             <Scatter name='JobID in XAxis, Power in YAxis [W]' data={qds} fill='#295173'/>
-             <ReferenceLine y={qualityMin} label="MIN" stroke="#fe8336"/>
-             <ReferenceLine y={qualityMax} label="Max" stroke="#fe8336"/>
-             <CartesianGrid />
-             <Tooltip cursor={{strokeDasharray: '3 3'}}/>
-            </ScatterChart>
+            <LineChart  data={qds}>
+           <XAxis dataKey="jobID" domain={[minValueX, maxValueX]}/>
+           <YAxis domain={[minValueY, maxValueY]}/>
+           <Tooltip/>
+           <Legend/>
+           <ReferenceLine y={qualityMin} label="MIN" stroke="#fe8336"/>
+           <ReferenceLine y={qualityMax} label="Max" stroke="#fe8336"/>
+           <Line type="monotone" dataKey="pulseEnergyAvgAct" stroke="#295173"  />
+           </LineChart>
 
            </ResponsiveContainer>
 

@@ -1,0 +1,165 @@
+import React from "react"
+import DataTables from 'material-ui-datatables'
+import DashboardHeader from '../pages/DashboardHeader'
+import Image from '../pages/Image'
+import { Card, CardImg, CardText, CardBlock,CardDeck,
+  CardTitle, CardSubtitle, CardFooter ,Button, Container, Row, Col } from 'reactstrap';
+import {fullWhite, darkWhite, lightWhite, blueGrey50, blueGrey100, grey50, blue900} from 'material-ui/styles/colors';
+import { observer, inject } from "mobx-react"
+
+import CodePosition from '../pages/CodePosition'
+import LaserLine from '../pages/LaserLine'
+
+
+const lstJobList = [
+  {jobID: 1, place: "München", date: "26/07/2017", quality: 0.89, angle: 74.1, smile: 1, x:1, y:5},
+  {jobID: 2, place: "München", date: "26/07/2017",quality: 0.90, angle: 40.3, smile: 1,x:0, y:6},
+  {jobID: 3, place: "München", date: "26/07/2017",quality: 0.88, angle: 0.3, smile: 0,x:3, y:23},
+  {jobID: 4, place: "München", date: "26/07/2017",quality: 0.89, angle: 0, smile: 0 ,x:8, y:12},
+  {jobID: 5, place: "München", date: "26/07/2017", quality: 0.89, angle: 74.1, smile: 1,x:1, y:15},
+  {jobID: 6, place: "München", date: "26/07/2017",quality: 0.90, angle: 40.3, smile: 0,x:1, y:15},
+  {jobID: 7, place: "München", date: "26/07/2017",quality: 0.88, angle: 0.3, smile: 1,x:1, y:5},
+  {jobID: 8, place: "München", date: "26/07/2017",quality: 0.88, angle: 0, smile: 1,x:1, y:5},
+  {jobID: 9, place: "München", date: "26/07/2017", quality: 0.87, angle: 74.1, smile: 0,x:18, y:18},
+  {jobID: 10, place: "München", date: "26/07/2017",quality: 0.88, angle: 40.3, smile: 0,x:20, y:9},
+  {jobID: 11, place: "München", date: "26/07/2017",quality: 0.90, angle: 0.3, smile: 0,x:20, y:8},
+  {jobID: 12, place: "München", date: "26/07/2017",quality: 0.90, angle: 0, smile: 0,x:15, y:5},
+  {jobID: 13, place: "München", date: "26/07/2017", quality: 0.90, angle: 74.1, smile: 1,x:13, y:4},
+  {jobID: 14, place: "München", date: "26/07/2017",quality: 0.89, angle: 40.3, smile: 1,x:8, y:22},
+  {jobID: 15, place: "München", date: "26/07/2017",quality: 0.88, angle: 0.3, smile: 1,x:5, y:2},
+  {jobID: 16, place: "München", date: "26/07/2017",quality: 0.90, angle: 0, smile: 0,x:5, y:4},
+  {jobID: 17, place: "München", date: "26/07/2017", quality: 0.90, angle: 74.1, smile: 1,x:9, y:7},
+  {jobID: 18, place: "München", date: "26/07/2017",quality: 0.89, angle: 40.3, smile: 1,x:12, y:5.5},
+  {jobID: 19, place: "München", date: "26/07/2017",quality: 0.90, angle: 0.3, smile: 0,x:12, y:15},
+  {jobID: 20, place: "München", date: "26/07/2017",quality: 0.90, angle: 0, smile: 0,x:1, y:5},
+
+
+];
+
+@inject('qdsstore')
+@observer
+export default class DataBaseUI extends React.Component {
+  constructor(props){
+    super(props);
+      this.state = {
+        qds: this.props.qdsstore.qdsData,
+        smiley0: this.props.qdsstore.smiley0,
+        smiley1: this.props.qdsstore.smiley1,
+        data: lstJobList,
+    };
+
+}
+
+  handleCellClick(rowIndex, columnIndex, row, column) {
+       console.log('rowIndex: ' + rowIndex + ' columnIndex: ' + columnIndex);
+  }
+
+  handleCellDoubleClick(rowIndex, columnIndex, row, column) {
+     console.log('rowIndex: ' + rowIndex + ' columnIndex: ' + columnIndex);
+  }
+
+  handleSortOrderChange(key, order) {
+     console.log('key:' + key + ' order: ' + order);
+  }
+
+  deselectOnClickaway(selectedRows){
+    console.log('selectedRows: ' + selectedRows );
+  }
+
+  handleRowSelection(selectedRows) {
+    console.log('selectedRows: ' + selectedRows );
+
+    //deselcted row --> show last image
+    var length = this.state.qds.length;
+
+    if(this.state.selectedRows == selectedRows){}
+      this.setState(
+         {
+           normal: this.state.qds[length-1].camera,
+           overlay: this.state.qds[length-1].overlay,
+           selectedImage: false,
+           selectedRows: selectedRows,
+         }
+      );
+    }
+    else{
+      //row selected --> show user selected image
+      this.setState(
+         {
+           normal: this.state.qds[selectedRows].camera,
+           overlay: this.state.qds[selectedRows].overlay,
+           selectedImage: true,
+           selectedRows: selectedRows,
+         }
+       );
+    }
+
+
+  }
+
+  render() {
+
+
+    const table_columns = [
+      {
+        key: 'jobID',
+        label: 'jobID',
+      },
+      {
+        key: 'timestamp',
+        label: 'Date',
+      },
+    ];
+    const styles = {
+      marginTop: "40px"
+    }
+
+ return(
+
+  <div>
+    <DashboardHeader data = {this.state.qds} />
+    <div style={styles}>
+    <div class="row">
+         <div class="col-lg-4" >
+            <Card class="myCard">
+              <CardBlock>
+                <CardTitle>Select your ID </CardTitle>
+                              <DataTables
+                                fixedHeader = {true}
+                                selectable={true}
+                                showRowHover={true}
+                                enableSelectAll={false}
+                                columns={table_columns}
+                                selectable={true}
+                                height={"800"}
+                                showCheckboxes={true}
+                                data={this.state.data}
+                                onCellClick={this.handleCellClick}
+                                onCellDoubleClick={this.handleCellDoubleClick}
+                                onFilterValueChange={this.handleFilterValueChange}
+                                onSortOrderChange={this.handleSortOrderChange}
+                                onRowSelection={this.handleRowSelection.bind(this)}
+                                onDeselectOnClickAway={this.deselectOnClickaway}
+                                count={30}/>
+                    </CardBlock>
+                  </Card>
+              </div>
+
+              <div class="col-lg-4">
+                      <CodePosition data={this.state.qds}/>
+                      <CardDeck>
+                        <Image image={this.state.normal} title={"Before Image processing"}/>
+                        <Image image={this.state.overlay} title={"After Image processing"}/>
+                      </CardDeck>
+              </div>
+
+              <div class="col-lg-4" >
+                    <LaserLine data={this.state.qds} maxValue={0.93} minValue={0.85} qualityMin={0.86} qualityMax={0.905} smiley={1}/>
+                    <LaserLine data={this.state.qds} maxValue={0.93} minValue={0.85} qualityMin={0.86} qualityMax={0.905} smiley={0}/ >
+                </div>
+        </div>
+      </div>
+      </div>
+  )
+}
+}

@@ -14,7 +14,7 @@ export default class DashboardHeader extends React.Component {
                 <Card block inverse style={{ backgroundColor: '#295173', borderColor: '#295173' }} class="myCard" >
                     <CardHeader></CardHeader>
                      <CardBlock>
-                       <CardTitle>Jobs Done</CardTitle>
+                       <CardTitle>Jobs</CardTitle>
                      </CardBlock>
                      <CardFooter></CardFooter>
                 </Card>
@@ -24,7 +24,7 @@ export default class DashboardHeader extends React.Component {
               <CardHeader></CardHeader>
                  <CardBlock>
                    <CardTitle>
-                  Image processing data during job</CardTitle>
+                  Image processing </CardTitle>
                  </CardBlock>
               <CardFooter></CardFooter>
             </Card >
@@ -33,7 +33,7 @@ export default class DashboardHeader extends React.Component {
           <Card block inverse style={{ backgroundColor: '#295173', borderColor: '#295173' }} class="myCard">
             <CardHeader></CardHeader>
                <CardBlock>
-                 <CardTitle>Avarage Power during job</CardTitle>
+                 <CardTitle>Welding</CardTitle>
                </CardBlock>
             <CardFooter></CardFooter>
           </Card>
